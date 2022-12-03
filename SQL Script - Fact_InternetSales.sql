@@ -29,7 +29,6 @@ SELECT
 FROM 
 	[AdventureWorksDW2019].[dbo].[FactInternetSales]
 WHERE
-	-- LEFT(OrderDateKey,4) >= YEAR(GETDATE()) -2	:Ensure we always only bring 2 years of date from extraction
 	LEFT(OrderDateKey,4) >= 2019
 ORDER BY 
 	OrderDateKey 
