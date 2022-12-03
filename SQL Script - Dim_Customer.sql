@@ -1,4 +1,5 @@
-/****** Script for SelectTopNRows command from SSMS  ******/
+-- Extract necessary columns from DimCustomer table + Join with DimGeography table for City & Country columns
+
 SELECT 
 	c.[CustomerKey] 
 		--,[GeographyKey]
@@ -12,9 +13,9 @@ SELECT
 		--,[BirthDate]
 		--,[MaritalStatus]
 		--,[Suffix]
-	, CASE WHEN [Gender] = 'M' Then 'Male' 
+	,CASE WHEN [Gender] = 'M' Then 'Male' 
 	   WHEN Gender = 'F' Then 'Female' 
-	   END									     AS Gender 
+	   END					     AS Gender 
 		--,[EmailAddress]
 		--,[YearlyIncome]
 		--,[TotalChildren]
@@ -35,7 +36,8 @@ SELECT
 	,g.City                                      AS [Customer City]
 	,g.EnglishCountryRegionName                  AS Country
 FROM 
-  [AdventureWorksDW2019].[dbo].[DimCustomer] AS c 
-  LEFT JOIN [AdventureWorksDW2019].[dbo].[DimGeography] AS g ON g.GeographyKey = c.GeographyKey 
+	[AdventureWorksDW2019].[dbo].[DimCustomer] AS c 
+	LEFT JOIN [AdventureWorksDW2019].[dbo].[DimGeography] AS g 
+	ON g.GeographyKey = c.GeographyKey 
 ORDER BY 
 	CustomerKey  
